@@ -33,16 +33,16 @@ public class MyClass
 		MyClass.board[0] = 0;
 		int[] cboard = new int[15];
 		for(int n=0;n<MyClass.board.length;n++){cboard[n]=board[n];}
-		display(solve(cboard,cboard,14));
-		//display(board);
+		display(solve(cboard,1,14));
+		display(board);
 	}
-	public static int[] solve(int[] ocu, int[] curboard, int numoc)
+	public static int[] solve(int[] ocu, int unocc, int numoc)
 	{
 		//display(ocu);
 		int[] nuocu = new int[15];
-		if(numoc ==1)
+		if(unocc ==14)
 		{	System.out.println("output");
-			for(int n=0;n<board.length;n++){board[n]=ocu[n];return ocu;}
+			for(int n=0;n<MyClass.board.length;n++){MyClass.board[n]=ocu[n];return ocu;}
 		}
 		for(int F=0;F<ocu.length;F++)
 		{
@@ -54,7 +54,7 @@ public class MyClass
 					{
 						for(int T=0;T<ocu.length;T++)
 						{
-							if(ocu[T]==0 && T!=F && T!=Ov)
+							if(ocu[T]==0 && T!=F && T!=Ov && unocc!=14)
 							{
 								//System.out.println("F"+F+"O"+Ov+"T"+T);
 								for(int[] mov:MyClass.moves)
@@ -71,7 +71,7 @@ public class MyClass
 										nuocu[T]=1;
 										//display(nuocu);
 										System.out.println("F"+F+"O"+Ov+"T"+T+"numoc="+(numoc-1));
-										solve(nuocu,ocu,numoc-1);
+										return solve(nuocu,unocc+1,numoc-1);
 									}
 
 								}
@@ -85,10 +85,10 @@ public class MyClass
 	}
 	public static void display(int[] bard)
 	{
-		System.out.println("    "+bard[0]);
-		System.out.println("   "+bard[1]+" "+bard[2]);
-		System.out.println("  "+bard[3]+" "+bard[4]+" "+bard[5]);
-		System.out.println(" "+bard[6]+" "+bard[7]+" "+bard[8]+" "+bard[9]);
-		System.out.println(""+bard[10]+" "+bard[11]+" "+bard[12]+" "+bard[13]+" "+bard[14]);
+		System.out.println("     "+bard[0]);
+		System.out.println("    "+bard[1]+" "+bard[2]);
+		System.out.println("   "+bard[3]+" "+bard[4]+" "+bard[5]);
+		System.out.println("  "+bard[6]+" "+bard[7]+" "+bard[8]+" "+bard[9]);
+		System.out.println(" "+bard[10]+" "+bard[11]+" "+bard[12]+" "+bard[13]+" "+bard[14]);
 	}
 } 
